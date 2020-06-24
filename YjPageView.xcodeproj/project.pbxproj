@@ -13,6 +13,19 @@
 		374667B624A1B1370030D29C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374667B424A1B1370030D29C /* Main.storyboard */; };
 		374667B824A1B13D0030D29C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 374667B724A1B13D0030D29C /* Assets.xcassets */; };
 		374667BB24A1B13D0030D29C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374667B924A1B13D0030D29C /* LaunchScreen.storyboard */; };
+		374667C424A1B2100030D29C /* YJPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667C324A1B2100030D29C /* YJPageHeaderView.swift */; };
+		374667C624A1B4190030D29C /* YJPageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667C524A1B4190030D29C /* YJPageContentView.swift */; };
+		374667C824A1CDAF0030D29C /* YJPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667C724A1CDAF0030D29C /* YJPageView.swift */; };
+		374667CC24A1CE590030D29C /* ChildOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667CB24A1CE590030D29C /* ChildOneVC.swift */; };
+		374667CE24A1CEBA0030D29C /* YJTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667CD24A1CEBA0030D29C /* YJTableViewCell.swift */; };
+		374667D024A1D03A0030D29C /* ChildTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667CF24A1D03A0030D29C /* ChildTwoVC.swift */; };
+		374667D824A1D0DD0030D29C /* SyncScrollContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667D724A1D0DD0030D29C /* SyncScrollContext.swift */; };
+		374667DE24A1E59D0030D29C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667DD24A1E59D0030D29C /* BaseViewController.swift */; };
+		374667E024A1ED6A0030D29C /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667DF24A1ED6A0030D29C /* SecondController.swift */; };
+		374667E224A1F3740030D29C /* YJScroPageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667E124A1F3740030D29C /* YJScroPageHeaderView.swift */; };
+		374667E624A1F4B70030D29C /* YJScroPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667E524A1F4B70030D29C /* YJScroPageView.swift */; };
+		374667E824A1F7E10030D29C /* YJScroPageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667E724A1F7E10030D29C /* YJScroPageContentView.swift */; };
+		374667ED24A1FAE40030D29C /* YJScroTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374667EC24A1FAE40030D29C /* YJScroTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +37,19 @@
 		374667B724A1B13D0030D29C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		374667BA24A1B13D0030D29C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		374667BC24A1B13D0030D29C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		374667C324A1B2100030D29C /* YJPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJPageHeaderView.swift; sourceTree = "<group>"; };
+		374667C524A1B4190030D29C /* YJPageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJPageContentView.swift; sourceTree = "<group>"; };
+		374667C724A1CDAF0030D29C /* YJPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJPageView.swift; sourceTree = "<group>"; };
+		374667CB24A1CE590030D29C /* ChildOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildOneVC.swift; sourceTree = "<group>"; };
+		374667CD24A1CEBA0030D29C /* YJTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJTableViewCell.swift; sourceTree = "<group>"; };
+		374667CF24A1D03A0030D29C /* ChildTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildTwoVC.swift; sourceTree = "<group>"; };
+		374667D724A1D0DD0030D29C /* SyncScrollContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncScrollContext.swift; sourceTree = "<group>"; };
+		374667DD24A1E59D0030D29C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		374667DF24A1ED6A0030D29C /* SecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
+		374667E124A1F3740030D29C /* YJScroPageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJScroPageHeaderView.swift; sourceTree = "<group>"; };
+		374667E524A1F4B70030D29C /* YJScroPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJScroPageView.swift; sourceTree = "<group>"; };
+		374667E724A1F7E10030D29C /* YJScroPageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJScroPageContentView.swift; sourceTree = "<group>"; };
+		374667EC24A1FAE40030D29C /* YJScroTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YJScroTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +82,52 @@
 		374667AD24A1B1370030D29C /* YjPageView */ = {
 			isa = PBXGroup;
 			children = (
+				374667C924A1CE300030D29C /* Controller */,
+				374667C224A1B1C20030D29C /* YjPageView */,
 				374667AE24A1B1370030D29C /* AppDelegate.swift */,
 				374667B024A1B1370030D29C /* SceneDelegate.swift */,
 				374667B224A1B1370030D29C /* ViewController.swift */,
+				374667DF24A1ED6A0030D29C /* SecondController.swift */,
 				374667B424A1B1370030D29C /* Main.storyboard */,
 				374667B724A1B13D0030D29C /* Assets.xcassets */,
 				374667B924A1B13D0030D29C /* LaunchScreen.storyboard */,
 				374667BC24A1B13D0030D29C /* Info.plist */,
 			);
 			path = YjPageView;
+			sourceTree = "<group>";
+		};
+		374667C224A1B1C20030D29C /* YjPageView */ = {
+			isa = PBXGroup;
+			children = (
+				374667C324A1B2100030D29C /* YJPageHeaderView.swift */,
+				374667C524A1B4190030D29C /* YJPageContentView.swift */,
+				374667C724A1CDAF0030D29C /* YJPageView.swift */,
+				374667D724A1D0DD0030D29C /* SyncScrollContext.swift */,
+				374667E124A1F3740030D29C /* YJScroPageHeaderView.swift */,
+				374667E724A1F7E10030D29C /* YJScroPageContentView.swift */,
+				374667E524A1F4B70030D29C /* YJScroPageView.swift */,
+			);
+			path = YjPageView;
+			sourceTree = "<group>";
+		};
+		374667C924A1CE300030D29C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				374667CA24A1CE300030D29C /* Cell */,
+				374667CB24A1CE590030D29C /* ChildOneVC.swift */,
+				374667CF24A1D03A0030D29C /* ChildTwoVC.swift */,
+				374667DD24A1E59D0030D29C /* BaseViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		374667CA24A1CE300030D29C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				374667CD24A1CEBA0030D29C /* YJTableViewCell.swift */,
+				374667EC24A1FAE40030D29C /* YJScroTableView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +201,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				374667ED24A1FAE40030D29C /* YJScroTableView.swift in Sources */,
+				374667E624A1F4B70030D29C /* YJScroPageView.swift in Sources */,
+				374667C824A1CDAF0030D29C /* YJPageView.swift in Sources */,
+				374667D024A1D03A0030D29C /* ChildTwoVC.swift in Sources */,
+				374667C624A1B4190030D29C /* YJPageContentView.swift in Sources */,
+				374667E824A1F7E10030D29C /* YJScroPageContentView.swift in Sources */,
 				374667B324A1B1370030D29C /* ViewController.swift in Sources */,
+				374667E224A1F3740030D29C /* YJScroPageHeaderView.swift in Sources */,
+				374667C424A1B2100030D29C /* YJPageHeaderView.swift in Sources */,
+				374667CC24A1CE590030D29C /* ChildOneVC.swift in Sources */,
 				374667AF24A1B1370030D29C /* AppDelegate.swift in Sources */,
+				374667CE24A1CEBA0030D29C /* YJTableViewCell.swift in Sources */,
+				374667D824A1D0DD0030D29C /* SyncScrollContext.swift in Sources */,
 				374667B124A1B1370030D29C /* SceneDelegate.swift in Sources */,
+				374667DE24A1E59D0030D29C /* BaseViewController.swift in Sources */,
+				374667E024A1ED6A0030D29C /* SecondController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leoj.YjPageView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leoj.YjPageView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
