@@ -149,22 +149,6 @@ class YJPageHeaderView: UIView {
         self.currentIndex = endIndex
     }
     
-    //点击之后改变标题颜色
-    func dragContentViewUpdateHeaderView(index:Int) {
-        if !(btnArr[index].isSelected){
-            //
-            let endFrame = CGRect.init(x: btnArr[index].frame.minX + (btnArr[index].frame.width - sliderViewWidth)/2.0, y: btnArr[index].frame.height - sliderViewHeight*2, width: sliderViewWidth, height: sliderViewHeight)
-            self.moveSliderView(endFrame: endFrame)
-            
-            self.scroTitleToCenter(index: index)
-            
-            self.changeBtnTitle(index: index)
-            
-            self.endIndex = CGFloat.init(index)
-            self.currentIndex = endIndex
-        }
-    }
-    
     //改变标题颜色
     func changeBtnTitle(index:Int){
         for i in 0 ..< btnArr.count{
@@ -175,25 +159,25 @@ class YJPageHeaderView: UIView {
     
     //标题滑动到scrollview中间位置
     func scroTitleToCenter(index:Int) {
-        let btn = self.btnArr[index]
-        //点击的标题居中显示
-        if btn.center.x >= frame.width*0.5 && btn.center.x <= ((self.scrollview.contentSize.width - (frame.width)*0.5)){
-            //左右滑到中间
-            UIView.animate(withDuration: 0.3) {
-                self.scrollview.contentOffset = CGPoint.init(x: (btn.frame.maxX - btn.frame.width*0.5) - (self.frame.width) * 0.5, y: 0)
-            }
-        }else {
-            //左右距离不够滑动中间时使scrollview左右对齐
-            if (btn.center.x < (frame.width)*0.5){
-                UIView.animate(withDuration: 0.3) {
-                    self.scrollview.contentOffset = CGPoint.init(x: 0.0, y: 0.0)
-                }
-            }else if (btn.center.x > (self.scrollview.contentSize.width - (frame.width)*0.5)){
-                UIView.animate(withDuration: 0.3) {
-                    self.scrollview.contentOffset = CGPoint.init(x: self.scrollview.contentSize.width - (self.frame.width), y: 0.0)
-                }
-            }
-        }
+//        let btn = self.btnArr[index]
+//        //点击的标题居中显示
+//        if btn.center.x >= frame.width*0.5 && btn.center.x <= ((self.scrollview.contentSize.width - (frame.width)*0.5)){
+//            //左右滑到中间
+//            UIView.animate(withDuration: 0.3) {
+//                self.scrollview.contentOffset = CGPoint.init(x: (btn.frame.maxX - btn.frame.width*0.5) - (self.frame.width) * 0.5, y: 0)
+//            }
+//        }else {
+//            //左右距离不够滑动中间时使scrollview左右对齐
+//            if (btn.center.x < (frame.width)*0.5){
+//                UIView.animate(withDuration: 0.3) {
+//                    self.scrollview.contentOffset = CGPoint.init(x: 0.0, y: 0.0)
+//                }
+//            }else if (btn.center.x > (self.scrollview.contentSize.width - (frame.width)*0.5)){
+//                UIView.animate(withDuration: 0.3) {
+//                    self.scrollview.contentOffset = CGPoint.init(x: self.scrollview.contentSize.width - (self.frame.width), y: 0.0)
+//                }
+//            }
+//        }
     }
     
     //滑块平移的目标frame位置

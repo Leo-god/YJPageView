@@ -56,6 +56,8 @@ extension YJPageView : UIScrollViewDelegate{
         switch scrollView.tag {
         case 0:
             //header
+            print("header.contentoffset: \(scrollView.contentOffset)")
+            print("header的某一个btn的frame：\(pageHeader.btnArr[2].frame)")
             break
         case 1:
             //content
@@ -65,6 +67,40 @@ extension YJPageView : UIScrollViewDelegate{
                 var frame = CGRect.init(x: pageHeader.btnArr[0].frame.minX + (pageHeader.btnArr[0].frame.width - pageHeader.sliderViewWidth)/2.0, y: pageHeader.btnArr[0].frame.height - pageHeader.sliderViewHeight*2, width: pageHeader.sliderViewWidth, height: pageHeader.sliderViewHeight)
                 
                 frame = CGRect.init(x: frame.origin.x + pageHeader.btnWidth / self.frame.width * offsetX, y: frame.origin.y, width: frame.width, height: frame.height)
+                
+                let translatePoint = scrollView.panGestureRecognizer.translation(in: scrollView)
+                //                FMLog(log: "translatePoint: \(translatePoint)")
+                if translatePoint.x < 0{
+                    //目标位置的frame
+                    //                    let targetFrame = pageHeader.btnArr[self.currentIndex + 1].frame
+                    if self.currentIndex < self.pageHeader.titleArr.count - 1{
+                        let targetBtn = pageHeader.btnArr[self.currentIndex + 1]
+                        //                    if targetBtn.center.x >= self.pageHeader.frame.width*0.5 && targetBtn.center.x <= ((self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)){
+                        //header随着滑动
+                        //                        let x = ((targetFrame.maxX - targetFrame.width*0.5) - (self.pageHeader.frame.width) * 0.5)
+                        
+                        self.pageHeader.scrollview.contentOffset = CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - targetBtn.frame.minX) / kScreenWidth * offsetX, y: 0)
+                        print("左滑的point: \(CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - targetBtn.frame.minX) / kScreenWidth * offsetX, y: 0))")
+                        print("当前中心点：\(CGPoint.init(x: (targetBtn.frame.maxX - targetBtn.frame.width*0.5) - (self.pageHeader.frame.width) * 0.5, y: 0))")
+                        
+                        //                    }
+                    }
+                    
+                }else{
+                    print("右滑")
+                    //目标位置的frame
+                    //                    let targetFrame = pageHeader.btnArr[self.currentIndex - 1].frame
+                    if self.currentIndex > 0{
+                        let targetBtn = pageHeader.btnArr[self.currentIndex - 1]
+                        //                    if targetBtn.center.x >= self.pageHeader.frame.width*0.5 && targetBtn.center.x <= ((self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)){
+                        //header随着滑动
+                        //                        let x = ((targetFrame.maxX - targetFrame.width*0.5) - (self.pageHeader.frame.width) * 0.5)
+                        self.pageHeader.scrollview.contentOffset = CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - targetBtn.frame.minX) / kScreenWidth * offsetX, y: 0)
+                        
+                        //                    }
+                    }
+                    
+                }
                 
                 pageHeader.moveSliderView(endFrame: frame)
             }
