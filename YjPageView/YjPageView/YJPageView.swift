@@ -22,6 +22,9 @@ class YJPageView: UIView {
     //标记是不是点击title使content滑动
     lazy var isClickTitleScroContent = false
     
+    //header的初始contentoffset
+    lazy var headerOffset = CGPoint.init(x: 0, y: 0)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -69,35 +72,52 @@ extension YJPageView : UIScrollViewDelegate{
                 frame = CGRect.init(x: frame.origin.x + pageHeader.btnWidth / self.frame.width * offsetX, y: frame.origin.y, width: frame.width, height: frame.height)
                 
                 let translatePoint = scrollView.panGestureRecognizer.translation(in: scrollView)
-                //                FMLog(log: "translatePoint: \(translatePoint)")
                 if translatePoint.x < 0{
-                    //目标位置的frame
-                    //                    let targetFrame = pageHeader.btnArr[self.currentIndex + 1].frame
                     if self.currentIndex < self.pageHeader.titleArr.count - 1{
                         let targetBtn = pageHeader.btnArr[self.currentIndex + 1]
-                        //                    if targetBtn.center.x >= self.pageHeader.frame.width*0.5 && targetBtn.center.x <= ((self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)){
-                        //header随着滑动
-                        //                        let x = ((targetFrame.maxX - targetFrame.width*0.5) - (self.pageHeader.frame.width) * 0.5)
-                        
-                        self.pageHeader.scrollview.contentOffset = CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - targetBtn.frame.minX) / kScreenWidth * offsetX, y: 0)
-                        print("左滑的point: \(CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - targetBtn.frame.minX) / kScreenWidth * offsetX, y: 0))")
-                        print("当前中心点：\(CGPoint.init(x: (targetBtn.frame.maxX - targetBtn.frame.width*0.5) - (self.pageHeader.frame.width) * 0.5, y: 0))")
-                        
-                        //                    }
+                        //使title滑动居中
+                        if targetBtn.center.x >= self.pageHeader.frame.width*0.5 && targetBtn.center.x <= ((self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)){
+                            print("左滑")
+                            //header随着滑动
+                            let offset = CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - (self.pageHeader.frame.width) * 0.5 - self.headerOffset.x) / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
+                            
+                            self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x + offset.x, y: self.headerOffset.y), animated: false)
+                            
+                        }else{
+                            //左右距离不够滑动中间时使scrollview左右对齐
+                            if (targetBtn.center.x > (self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)) && self.pageHeader.scrollview.contentOffset.x != (self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)){
+                                
+                                //header随着滑动
+                                let offset = CGPoint.init(x: (self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width) - self.headerOffset.x) / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
+                                
+                                self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x + offset.x, y: self.headerOffset.y), animated: false)
+                            }
+                        }
                     }
                     
                 }else{
-                    print("右滑")
-                    //目标位置的frame
-                    //                    let targetFrame = pageHeader.btnArr[self.currentIndex - 1].frame
+                    
                     if self.currentIndex > 0{
                         let targetBtn = pageHeader.btnArr[self.currentIndex - 1]
-                        //                    if targetBtn.center.x >= self.pageHeader.frame.width*0.5 && targetBtn.center.x <= ((self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)){
-                        //header随着滑动
-                        //                        let x = ((targetFrame.maxX - targetFrame.width*0.5) - (self.pageHeader.frame.width) * 0.5)
-                        self.pageHeader.scrollview.contentOffset = CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - targetBtn.frame.minX) / kScreenWidth * offsetX, y: 0)
-                        
-                        //                    }
+                        //使title滑动居中
+                        if targetBtn.center.x >= self.pageHeader.frame.width*0.5 && targetBtn.center.x <= ((self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width)*0.5)){
+                            print("右滑")
+                            //header随着滑动
+                            let offset = CGPoint.init(x: (self.headerOffset.x - ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - (self.pageHeader.frame.width) * 0.5)) / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
+                            
+                            self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x - offset.x, y: self.headerOffset.y), animated: false)
+
+                            
+                        }else{
+                            //左右距离不够滑动中间时使scrollview左右对齐
+                            if (targetBtn.center.x < (self.pageHeader.frame.width)*0.5) && self.pageHeader.scrollview.contentOffset.x != 0{
+                                
+                                //header随着滑动
+                                let offset = CGPoint.init(x: self.headerOffset.x / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
+                                
+                                self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x - offset.x, y: self.headerOffset.y), animated: false)
+                            }
+                        }
                     }
                     
                 }
@@ -111,7 +131,7 @@ extension YJPageView : UIScrollViewDelegate{
         }
     }
     
-    //开始减速
+    //减速结束
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let scrollToScrollStop:Bool = !scrollView.isTracking && !scrollView.isDragging && !scrollView.isDecelerating
@@ -120,6 +140,8 @@ extension YJPageView : UIScrollViewDelegate{
             switch scrollView.tag {
             case 0:
                 //header
+                self.headerOffset = scrollView.contentOffset
+                print("减速结束时：\(scrollView.contentOffset)")
                 break
             case 1:
                 //content
@@ -130,6 +152,8 @@ extension YJPageView : UIScrollViewDelegate{
                     self.pageHeader.changeBtnTitle(index: self.nextIndex)
                     currentIndex=nextIndex
                 }
+                //在content滑动结束之后更新header的contentoffset
+                self.headerOffset = self.pageHeader.scrollview.contentOffset
                 break
             default:
                 break
@@ -137,32 +161,33 @@ extension YJPageView : UIScrollViewDelegate{
         }
         
     }
-    //拖动结束那一瞬间
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        //        let scrollToScrollStop:Bool = scrollView.isTracking && !scrollView.isDragging && !scrollView.isDecelerating
-        //        if scrollToScrollStop{
-        //拖动结束
-        switch scrollView.tag {
-        case 0:
-            //header
-            break
-        case 1:
-            //content
-            self.nextIndex = Int(roundf(Float(scrollView.contentOffset.x / self.frame.width)))
-            if currentIndex != nextIndex{
-                self.pageHeader.endIndex = CGFloat(self.nextIndex)
-                self.pageHeader.scroTitleToCenter(index: self.nextIndex)
-                self.pageHeader.changeBtnTitle(index: self.nextIndex)
-                currentIndex=nextIndex
-            }
-            break
-        default:
-            break
-        }
-        //        }
-        
-    }
+    
+    //    //拖动结束那一瞬间
+    //    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    //
+    //        let scrollToScrollStop:Bool = scrollView.isTracking && !scrollView.isDragging && !scrollView.isDecelerating
+    //        if scrollToScrollStop{
+    //            //拖动结束
+    //            switch scrollView.tag {
+    //            case 0:
+    //                //header
+    //                break
+    //            case 1:
+    //                //content
+    //                self.nextIndex = Int(roundf(Float(scrollView.contentOffset.x / self.frame.width)))
+    //                if currentIndex != nextIndex{
+    //                    self.pageHeader.endIndex = CGFloat(self.nextIndex)
+    //                    self.pageHeader.scroTitleToCenter(index: self.nextIndex)
+    //                    self.pageHeader.changeBtnTitle(index: self.nextIndex)
+    //                    currentIndex=nextIndex
+    //                }
+    //                break
+    //            default:
+    //                break
+    //            }
+    //        }
+    //
+    //    }
     
     //    setContentOffset
     //    scrollRectVisible:animated:
