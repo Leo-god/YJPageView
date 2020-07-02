@@ -60,8 +60,8 @@ extension ChildOneVC : UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = SecondController()
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = SecondController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

@@ -81,7 +81,10 @@ extension YJPageView : UIScrollViewDelegate{
                             //header随着滑动
                             let offset = CGPoint.init(x: ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - (self.pageHeader.frame.width) * 0.5 - self.headerOffset.x) / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
                             
-                            self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x + offset.x, y: self.headerOffset.y), animated: false)
+                            UIView.animate(withDuration: 0) {
+                                self.pageHeader.scrollview.contentOffset = CGPoint.init(x: self.headerOffset.x + offset.x, y: self.headerOffset.y)
+                            }
+                            
                             
                         }else{
                             //左右距离不够滑动中间时使scrollview左右对齐
@@ -90,7 +93,9 @@ extension YJPageView : UIScrollViewDelegate{
                                 //header随着滑动
                                 let offset = CGPoint.init(x: (self.pageHeader.scrollview.contentSize.width - (self.pageHeader.frame.width) - self.headerOffset.x) / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
                                 
-                                self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x + offset.x, y: self.headerOffset.y), animated: false)
+                                UIView.animate(withDuration: 0) {
+                                    self.pageHeader.scrollview.contentOffset = CGPoint.init(x: self.headerOffset.x + offset.x, y: self.headerOffset.y)
+                                }
                             }
                         }
                     }
@@ -105,8 +110,9 @@ extension YJPageView : UIScrollViewDelegate{
                             //header随着滑动
                             let offset = CGPoint.init(x: (self.headerOffset.x - ((targetBtn.frame.maxX - targetBtn.frame.width*0.5) - (self.pageHeader.frame.width) * 0.5)) / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
                             
-                            self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x - offset.x, y: self.headerOffset.y), animated: false)
-
+                            UIView.animate(withDuration: 0) {
+                                self.pageHeader.scrollview.contentOffset = CGPoint.init(x: self.headerOffset.x - offset.x, y: self.headerOffset.y)
+                            }
                             
                         }else{
                             //左右距离不够滑动中间时使scrollview左右对齐
@@ -115,7 +121,9 @@ extension YJPageView : UIScrollViewDelegate{
                                 //header随着滑动
                                 let offset = CGPoint.init(x: self.headerOffset.x / self.pageContent.frame.width * abs(translatePoint.x), y: 0)
                                 
-                                self.pageHeader.scrollview.setContentOffset(CGPoint.init(x: self.headerOffset.x - offset.x, y: self.headerOffset.y), animated: false)
+                                UIView.animate(withDuration: 0) {
+                                    self.pageHeader.scrollview.contentOffset = CGPoint.init(x: self.headerOffset.x - offset.x, y: self.headerOffset.y)
+                                }
                             }
                         }
                     }
